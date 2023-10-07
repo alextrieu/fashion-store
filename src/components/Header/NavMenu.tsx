@@ -1,7 +1,7 @@
 export default function NavMenu() {
   return (
     <>
-      <ul className="list-none flex flex-col gap-4 mt-12">
+      <ul className="list-none flex flex-col gap-4 mt-14">
         <li className="font-bold cursor-pointer">NEW</li>
         <li className="flex justify-between items-center cursor-pointer">
           <span className="font-bold">FEATURED</span>
