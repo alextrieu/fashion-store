@@ -18,13 +18,14 @@ export default function Header() {
       left: 0,
       height: "100vh",
       width: "100vw",
+      zIndex: 1,
     }),
     [navClick]
   );
 
   return (
     <>
-      <header className="p-5 bg-custom-cream text-black">
+      <header className="p-5 bg-custom-cream text-black border-b-black border-2">
         <div className="flex justify-between items-center">
           <div className="text-xl">
             <i className="fa-brands fa-drupal"></i>
