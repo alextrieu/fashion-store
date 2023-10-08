@@ -1,3 +1,23 @@
+import { useEffect, useState } from "react";
+import SanityClient from "../../../src/client";
+import { useParams } from "react-router-dom";
+import { Product } from "../../types/types";
+
+type Params = {
+  productId: string;
+};
+
 export default function ProductListing() {
-  return <div>ProductListing</div>;
+  const { productId } = useParams<Params>();
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    SanityClient.fetch(`*[_type == "product" && _id == "${productId}"]`)
+      .then((data: Product[]) => setProduct(data[0]))
+      .catch(console.error);
+  }, [productId]);
+
+  if (!product) return <div>Loading...</div>;
+
+  return <div>{product.name}</div>;
 }
