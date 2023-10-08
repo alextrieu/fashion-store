@@ -1,36 +1,23 @@
 import { useState, useEffect } from "react";
 import sanityClient from "../../../client";
+import ProductCard from "../../ProductCard/ProductCard";
+import { Product } from "../../../types/types";
 
 export default function PopularProducts() {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
     sanityClient.fetch('*[_type == "product"]').then(setProducts).catch(console.error);
   }, []);
 
-  console.log(products);
   return (
-    <section>
-      <h1>Popular Products</h1>
-      <div>
-        {products &&
-          products.map((product) => (
-            <div key={product._id}>
-              <h2>{product.name}</h2>
-              <h2>From ${product.price}</h2>
-              <h2>{product.tagline}</h2>
-              <br></br>
-            </div>
-          ))}
+    <section className="flex flex-col gap-1">
+      <h2 className="text-2xl font-semibold">Popular Products</h2>
+      <div className="flex gap-5 overflow-x-auto pb-4">
+        {/* Product Grid */}
+        {products && products.map((product) => <ProductCard key={product._id} product={product} />)}
       </div>
+      <button className="rounded-md border-solid border-2 border-black self-center p-2">Explore</button>
     </section>
   );
 }
-
-// iPhone 15 Pro
-// Titanium. So Strong. So light. So Pro.
-// From $999
-
-// Apple Watch Series 9
-// Smarter. Brighter. Mightier.
-// From $399
