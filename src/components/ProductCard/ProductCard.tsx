@@ -6,6 +6,7 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product }: ProductCardProps) {
+  console.log(product.storageOptions);
   return (
     <Link to={`/product/${product._id}`}>
       <article key={product._id} className="flex-none flex flex-col items-center gap-1 w-40">
@@ -18,7 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
         <h2 className="text-center line-clamp-1">{product.name}</h2>
         <p className="text-center line-clamp-2 h-12">{product.tagline}</p>
-        <p className="font-semibold">From ${product.price}</p>
+        <p className="font-semibold">From ${}</p>
       </article>
     </Link>
   );

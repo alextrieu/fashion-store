@@ -9,26 +9,42 @@ export default {
       title: 'Product Name',
     },
     {
+      name: 'brand',
+      type: 'string',
+      title: 'Brand Name',
+    },
+    {
       name: 'imageLink',
       type: 'url',
       title: 'Image Link',
     },
     {
-      name: 'price',
-      type: 'number',
-      title: 'Price',
-    },
-    {
-      name: 'storageAvailability',
+      name: 'storageOptions',
       type: 'array',
-      title: 'Storage Availability',
-      of: [{type: 'string'}],
-      options: {
-        list: [
-          {title: '64GB', value: '64GB'},
-          {title: '128GB', value: '128GB'},
-        ],
-      },
+      title: 'Storage Options',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'storageSize',
+              type: 'string',
+              title: 'Storage Size',
+              options: {
+                list: [
+                  {title: '64GB', value: '64GB'},
+                  {title: '128GB', value: '128GB'},
+                ],
+              },
+            },
+            {
+              name: 'price',
+              type: 'number',
+              title: 'Price',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'colorAvailability',
