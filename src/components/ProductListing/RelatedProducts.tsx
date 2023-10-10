@@ -22,7 +22,7 @@ export default function RelatedProducts({ product }: Params) {
       <h1>Complete Your Purchase</h1>
       <div className="flex gap-3">
         {relatedProducts?.map((product) => (
-          <div className="flex flex-col">
+          <div className="flex flex-col" key={product._id}>
             <p>{product.name}</p>
             <button>Add</button>
           </div>

@@ -1,3 +1,10 @@
+export type Review = {
+  id: number;
+  reviewerName: string;
+  rating: number;
+  comment: string;
+};
+
 export type StorageOption = {
   storageSize: string;
   price: number;
@@ -12,4 +19,7 @@ export type Product = {
   colorAvailability: string[];
   description: string;
   tagline: string;
+  reviews: Review[];
+  details: string;
+  features: string;
 };

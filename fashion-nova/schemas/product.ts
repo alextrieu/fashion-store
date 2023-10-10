@@ -68,5 +68,49 @@ export default {
       type: 'string',
       title: 'Tag Line',
     },
+    {
+      name: 'details',
+      type: 'string',
+      title: 'Details',
+    },
+    {
+      name: 'features',
+      type: 'string',
+      title: 'Features',
+    },
+    {
+      name: 'reviews',
+      type: 'array',
+      title: 'Reviews',
+      of: [
+        {
+          type: 'object',
+          title: 'Review',
+          fields: [
+            {
+              name: 'id',
+              type: 'number',
+              title: 'Id',
+            },
+            {
+              name: 'reviewerName',
+              type: 'string',
+              title: 'Reviewer Name',
+            },
+            {
+              name: 'rating',
+              type: 'number',
+              title: 'Rating',
+              validation: (Rule: any) => Rule.min(1).max(5),
+            },
+            {
+              name: 'comment',
+              type: 'text',
+              title: 'Comment',
+            },
+          ],
+        },
+      ],
+    },
   ],
 }

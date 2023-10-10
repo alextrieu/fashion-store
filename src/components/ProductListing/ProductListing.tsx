@@ -6,6 +6,7 @@ import { Product } from "../../types/types";
 import StorageSelectionForm from "./StorageSelectionForm";
 import ArrivalTimeChecker from "./ArrivalTimeChecker";
 import RelatedProducts from "./RelatedProducts";
+import ProductOverview from "./ProductOverview";
 
 type Params = {
   productId: string;
@@ -51,6 +52,7 @@ export default function ProductListing() {
       </div>
       <ArrivalTimeChecker />
       <RelatedProducts product={product} />
+      <ProductOverview product={product} />
     </>
   );
 }
