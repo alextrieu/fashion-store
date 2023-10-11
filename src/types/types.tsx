@@ -25,6 +25,7 @@ export type Product = {
   name: string;
   brand: string;
   imageLink: string;
+  basePrice: number;
   storageOptions: StorageOption[];
   colorAvailability: string[];
   description: string;

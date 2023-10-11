@@ -11,7 +11,7 @@ export default function RelatedProducts({ product }: Params) {
 
   useEffect(() => {
     if (product && product._id) {
-      SanityClient.fetch(`*[_type == "product" && _id != "${product._id}"]`)
+      SanityClient.fetch(`*[_type == "product" && _id != "${product._id}" && (defined(basePrice))]`)
         .then((data: Product[]) => setRelatedProducts(data))
         .catch(console.error);
     }
@@ -25,7 +25,7 @@ export default function RelatedProducts({ product }: Params) {
           <div className="flex flex-col items-center" key={product._id}>
             <p className="text-lg">{product.name}</p>
             <img src={product.imageLink} className="h-32 w-32" />
-            <p className="text-lg font-medium">$42</p>
+            <p className="text-lg font-medium">${product.basePrice}</p>
             <button style={{ backgroundColor: "#FFD38F" }} className="mt-2 w-20 rounded-3xl p-1">
               Add
             </button>

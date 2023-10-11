@@ -19,6 +19,11 @@ export default {
       title: 'Image Link',
     },
     {
+      name: 'basePrice',
+      type: 'number',
+      title: 'Base Price',
+    },
+    {
       name: 'storageOptions',
       type: 'array',
       title: 'Storage Options',

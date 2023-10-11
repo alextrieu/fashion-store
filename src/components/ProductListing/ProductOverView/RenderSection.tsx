@@ -29,6 +29,7 @@ function RenderSection({ product, activeSection }: Params) {
                     background: "white",
                     backgroundImage: "radial-gradient(black 1px, transparent 1px)",
                     backgroundSize: "4px 4px",
+                    marginTop: "13px",
                   }}
                 ></div>
               </div>
