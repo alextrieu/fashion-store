@@ -75,8 +75,38 @@ export default {
     },
     {
       name: 'features',
-      type: 'string',
+      type: 'array',
       title: 'Features',
+      of: [
+        {
+          type: 'object',
+          title: 'Feature',
+          fields: [
+            {
+              name: 'heading',
+              type: 'string',
+              title: 'Heading',
+            },
+            {
+              name: 'featureDescription',
+              type: 'object',
+              title: 'Feature Description',
+              fields: [
+                {
+                  name: 'part1',
+                  type: 'string',
+                  title: 'Part 1',
+                },
+                {
+                  name: 'part2',
+                  type: 'string',
+                  title: 'Part 2',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'reviews',

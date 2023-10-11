@@ -38,38 +38,52 @@ export default function StorageSelectionForm({ product }: Params) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <fieldset>
-        <legend>Storage Size:</legend>
+        <legend className="mb-1 text-lg font-medium">Storage Size:</legend>
 
         {product.storageOptions &&
           product.storageOptions.map((storage, index) => (
             <div key={index}>
-              <input
-                type="radio"
-                id={`storage-${index}`}
-                name="storage"
-                value={storage.storageSize}
-                onChange={handleChange}
-                checked={selectedStorage === storage.storageSize}
-              />
-              <label htmlFor={`storage-${index}`}>
-                <span>{storage.storageSize}</span>{" "}
+              <div className="flex justify-between">
+                <div>
+                  <input
+                    type="radio"
+                    id={`storage-${index}`}
+                    name="storage"
+                    value={storage.storageSize}
+                    onChange={handleChange}
+                    checked={selectedStorage === storage.storageSize}
+                    className="mr-2"
+                  />
+                  <label htmlFor={`storage-${index}`}>
+                    <span>{storage.storageSize}</span>{" "}
+                  </label>
+                </div>
+
                 <span>
                   From ${storage.price} or ${twoYearsAmortization(storage.price)} for 24 months.
                 </span>
-              </label>
+              </div>
+              {index === 0 && (
+                <div style={{ borderBottom: "1px solid black", width: "100%", height: "0", margin: "8px 0" }}></div>
+              )}
             </div>
           ))}
       </fieldset>
-      <p>{selectedPrice}</p>
-      <p>
+
+      <p className="text-2xl font-medium">${selectedPrice} CAD</p>
+
+      <p className="text-lg text-stone-600">
         Or{" "}
         {selectedPrice !== null
           ? `$${twoYearsAmortization(selectedPrice)}/month with 24-months financing`
           : "Please select a storage size to see pricing"}
       </p>
-      <button type="submit">Add to Cart</button>
+
+      <button type="submit" style={{ backgroundColor: "#FFD38F" }} className="p-3 rounded-3xl font-medium">
+        Add to Cart
+      </button>
     </form>
   );
 }

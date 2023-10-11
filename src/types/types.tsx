@@ -10,6 +10,16 @@ export type StorageOption = {
   price: number;
 };
 
+export type FeatureDescription = {
+  part1: string;
+  part2: string;
+};
+
+export type Feature = {
+  heading: string;
+  featureDescription: FeatureDescription;
+};
+
 export type Product = {
   _id: string;
   name: string;
@@ -21,5 +31,5 @@ export type Product = {
   tagline: string;
   reviews: Review[];
   details: string;
-  features: string;
+  features: Feature[];
 };

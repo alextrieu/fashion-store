@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="p-5 bg-custom-cream text-black border-b-black border-2">
+      <header className="p-5 bg-custom-cream text-black">
         <div className="flex justify-between items-center">
           <div className="text-xl">
             <i className="fa-brands fa-drupal"></i>

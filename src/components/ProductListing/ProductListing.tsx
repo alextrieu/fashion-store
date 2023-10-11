@@ -6,7 +6,7 @@ import { Product } from "../../types/types";
 import StorageSelectionForm from "./StorageSelectionForm";
 import ArrivalTimeChecker from "./ArrivalTimeChecker";
 import RelatedProducts from "./RelatedProducts";
-import ProductOverview from "./ProductOverview";
+import ProductOverview from "./ProductOverView/ProductOverview";
 
 type Params = {
   productId: string;
@@ -15,6 +15,7 @@ type Params = {
 export default function ProductListing() {
   const { productId } = useParams<Params>();
   const [product, setProduct] = useState<Product | null>(null);
+  const [selectedColor, setSelectedColor] = useState("black");
 
   useEffect(() => {
     SanityClient.fetch(`*[_type == "product" && _id == "${productId}"]`)
@@ -24,35 +25,65 @@ export default function ProductListing() {
 
   if (!product) return <div>Loading...</div>;
 
+  const productBrand = () => {
+    switch (product.brand) {
+      case "Apple":
+        return (
+          <>
+            <i className="fa-brands fa-apple text-xl"></i> {product.brand}
+          </>
+        );
+      case "Samsung":
+        return (
+          <>
+            <i className="fa-brands fa-samsung text-xl"></i> {product.brand}
+          </>
+        );
+      default:
+        <>{product.brand}</>;
+    }
+  };
+
   return (
-    <>
+    <div className="px-4 bg-custom-cream flex flex-col gap-3">
       <div>
-        <h3>{product.brand}</h3>
-        <h1>Buy {product.name}</h1>
+        <span className="text-lg">{productBrand()}</span>
+        <h1 className="text-2xl font-semibold tracking-wide">Buy {product.name}</h1>
       </div>
 
-      <div>
-        <span>
-          <i className="fa-solid fa-circle-plus"></i>
-        </span>
-        <span> Get $40-$640 for your trade-in</span>
+      <span className="mb-2 text-lg">
+        <i className="fa-solid fa-circle-info"></i> Get $40-$640 for your trade-in
+      </span>
+
+      <div className="flex justify-center">
+        <img src={product.imageLink} className="h-auto w-64" />
       </div>
-      <img src={product.imageLink} />
-      <div>
-        <p>Color</p>
-        <div className="flex gap-2.5">
-          {product.colorAvailability &&
-            product.colorAvailability.map((color, index) => (
-              <div key={index} className="w-5 h-5 rounded-full shadow-md" style={{ backgroundColor: color }}></div>
+
+      {product.colorAvailability && (
+        <div>
+          <p className="text-xl font-medium mb-1">Color</p>
+          <div className="flex gap-3">
+            {product.colorAvailability.map((color) => (
+              <button
+                key={color}
+                className={`w-7 h-7 rounded-full shadow-md ${
+                  selectedColor === color ? "border-2 border-blue-500" : ""
+                }`}
+                onClick={() => setSelectedColor(color)}
+                style={{ backgroundColor: color }}
+              ></button>
             ))}
+          </div>
         </div>
-      </div>
-      <div>
-        <StorageSelectionForm product={product} />
-      </div>
+      )}
+
+      <StorageSelectionForm product={product} />
+
       <ArrivalTimeChecker />
+
       <RelatedProducts product={product} />
+
       <ProductOverview product={product} />
-    </>
+    </div>
   );
 }
