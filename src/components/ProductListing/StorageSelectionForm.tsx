@@ -42,7 +42,7 @@ export default function StorageSelectionForm({ product }: Params) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <fieldset role="radiogroup">
-        <legend className="mb-1 text-lg font-medium">Storage Size:</legend>
+        {storageOptions && <legend className="mb-1 text-lg font-medium">Storage Size:</legend>}
 
         {storageOptions &&
           storageOptions.map((storage, index) => (

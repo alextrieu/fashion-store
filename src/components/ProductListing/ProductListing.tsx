@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { Product } from "../../types/types";
 
 import StorageSelectionForm from "./StorageSelectionForm";
-import ArrivalTimeChecker from "./ArrivalTimeChecker";
 import RelatedProducts from "./RelatedProducts";
 import ProductOverview from "./ProductOverView/ProductOverview";
 
@@ -78,8 +77,6 @@ export default function ProductListing() {
       )}
 
       <StorageSelectionForm product={product} />
-
-      <ArrivalTimeChecker />
 
       <RelatedProducts product={product} />
 

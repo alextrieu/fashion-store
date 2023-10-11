@@ -1,4 +1,5 @@
 import { useState, CSSProperties, useMemo } from "react";
+import { Link } from "react-router-dom";
 import NavMenu from "./NavMenu";
 import AccAccess from "./AccAccess";
 
@@ -28,7 +29,9 @@ export default function Header() {
       <header className="p-5 bg-custom-cream text-black">
         <div className="flex justify-between items-center">
           <div className="text-xl">
-            <i className="fa-brands fa-drupal"></i>
+            <Link to={"/"}>
+              <i className="fa-brands fa-drupal"></i>
+            </Link>
           </div>
           <div className="flex gap-5 text-xl">
             <span>
