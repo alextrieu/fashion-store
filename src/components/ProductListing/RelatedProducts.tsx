@@ -26,8 +26,8 @@ export default function RelatedProducts({ product }: Params) {
           <Link to={`/product/${product._id}`} key={product._id}>
             <div className="flex flex-col items-center">
               <p className="text-lg">{product.name}</p>
-              <img src={product.imageLink} className="h-32 w-32" />
-              <p className="text-lg font-medium">${product.basePrice}</p>
+              <img src={product.variants[0].imageLinks[0]} className="h-32 w-32" />
+              <p className="text-lg font-medium">${product.variants[0].price}</p>
               <button style={{ backgroundColor: "#FFD38F" }} className="mt-2 w-20 rounded-3xl p-1">
                 Add
               </button>

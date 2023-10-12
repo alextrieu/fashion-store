@@ -7,10 +7,11 @@ type Params = {
 };
 
 export default function StorageSelectionForm({ product }: Params) {
-  const { storageOptions, basePrice } = product;
+  const { variants } = product;
 
-  const initialStorage = storageOptions && storageOptions[0] ? storageOptions[0].storageSize : "";
-  const initialPrice = storageOptions && storageOptions[0] ? storageOptions[0].price : basePrice || null;
+  const initialStorage = variants?.find((variant) => variant.storageSize)?.storageSize || null;
+
+  const initialPrice = variants?.find((variant) => variant.price)?.price || null;
 
   const [selectedStorage, setSelectedStorage] = useState(initialStorage);
   const [selectedPrice, setSelectedPrice] = useState<number | null>(initialPrice);
@@ -23,7 +24,7 @@ export default function StorageSelectionForm({ product }: Params) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedStorage(e.target.value);
 
-    const selectedOption = storageOptions.find((option) => option.storageSize === e.target.value);
+    const selectedOption = variants.find((variant) => variant.storageSize === e.target.value);
 
     if (selectedOption) {
       setSelectedPrice(selectedOption.price);
@@ -42,10 +43,12 @@ export default function StorageSelectionForm({ product }: Params) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <fieldset role="radiogroup">
-        {storageOptions && <legend className="mb-1 text-lg font-medium">Storage Size:</legend>}
+        {variants.find((variant) => variant.storageSize) && (
+          <legend className="mb-1 text-lg font-medium">Storage Size:</legend>
+        )}
 
-        {storageOptions &&
-          storageOptions.map((storage, index) => (
+        {variants.find((variant) => variant.storageSize) &&
+          variants.map((variant, index) => (
             <div key={index}>
               <div className="flex justify-between">
                 <div>
@@ -53,17 +56,17 @@ export default function StorageSelectionForm({ product }: Params) {
                     type="radio"
                     id={`storage-${index}`}
                     name="storage"
-                    value={storage.storageSize}
+                    value={variant.storageSize}
                     onChange={handleChange}
-                    checked={selectedStorage === storage.storageSize}
+                    checked={selectedStorage === variant.storageSize}
                     className="mr-2"
                     aria-labelledby={`storage-label-${index}`}
                   />
-                  <label htmlFor={`storage-${index}`}>{storage.storageSize}</label>
+                  <label htmlFor={`storage-${index}`}>{variant.storageSize}</label>
                 </div>
 
                 <span>
-                  From ${storage.price} or ${twoYearsAmortization(storage.price)} for 24 months.
+                  From ${variant.price} or ${twoYearsAmortization(variant.price)} for 24 months.
                 </span>
               </div>
               {index === 0 && <div className="border-2 border-dashed border-b-black w-full h-0 my-2"></div>}
