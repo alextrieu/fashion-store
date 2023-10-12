@@ -14,23 +14,31 @@ export default {
       title: 'Brand Name',
     },
     {
-      name: 'imageLink',
-      type: 'url',
-      title: 'Image Link',
-    },
-    {
       name: 'basePrice',
       type: 'number',
       title: 'Base Price',
     },
     {
-      name: 'storageOptions',
+      name: 'variants',
       type: 'array',
-      title: 'Storage Options',
+      title: 'Variants',
       of: [
         {
           type: 'object',
           fields: [
+            {
+              name: 'color',
+              type: 'string',
+              title: 'Color',
+              options: {
+                list: [
+                  {title: 'Black', value: 'black'},
+                  {title: 'White', value: 'white'},
+                  {title: 'Green', value: 'green'},
+                  // ... other colors ...
+                ],
+              },
+            },
             {
               name: 'storageSize',
               type: 'string',
@@ -47,21 +55,15 @@ export default {
               type: 'number',
               title: 'Price',
             },
+            {
+              name: 'imageLinks',
+              type: 'array',
+              title: 'Image Links',
+              of: [{type: 'url'}],
+            },
           ],
         },
       ],
-    },
-    {
-      name: 'colorAvailability',
-      type: 'array',
-      title: 'Color Availability',
-      of: [{type: 'string'}],
-      options: {
-        list: [
-          {title: 'Black', value: 'black'},
-          {title: 'White', value: 'white'},
-        ],
-      },
     },
     {
       name: 'description',

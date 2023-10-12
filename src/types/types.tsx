@@ -5,9 +5,11 @@ export type Review = {
   comment: string;
 };
 
-export type StorageOption = {
+export type Variant = {
+  color: string;
   storageSize: string;
   price: number;
+  imageLinks: string[];
 };
 
 export type FeatureDescription = {
@@ -24,10 +26,8 @@ export type Product = {
   _id: string;
   name: string;
   brand: string;
-  imageLink: string;
   basePrice: number;
-  storageOptions: StorageOption[];
-  colorAvailability: string[];
+  variants: Variant[];
   description: string;
   tagline: string;
   reviews: Review[];
