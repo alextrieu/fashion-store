@@ -34,3 +34,8 @@ export type Product = {
   details: string;
   features: Feature[];
 };
+
+export type CartHeaderProps = {
+  activeTab: string;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+};

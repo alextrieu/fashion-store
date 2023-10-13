@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-import IconNavbar from "./IconNavBar";
+import IconNavbar from "./IconNavbar";
 import NavMenu from "./NavMenu";
 import AccAccess from "./AccAccess";
 import CloseButtonHeader from "./CloseButtonHeader";
+import CartPage from "../CartPage/CartPage";
 
 export default function Header() {
   const [navClick, setNavClick] = useState<boolean>(false);
@@ -20,7 +21,7 @@ export default function Header() {
         </CloseButtonHeader>
 
         <CloseButtonHeader onToggleCart={setCartClick} isOpen={cartClick}>
-          <p className="mt-14">hello</p>
+          <CartPage />
         </CloseButtonHeader>
       </header>
     </>

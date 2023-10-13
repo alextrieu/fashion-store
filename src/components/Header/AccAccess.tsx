@@ -1,7 +1,7 @@
 export default function AccAccess() {
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 px-5">
         <h3 className="text-2xl font-bold">DISCOVER ALL THINGS MEJURI-AND MORE.</h3>
         <p className="text-sm">
           One account to shop personalized recommendations and exclusive products. Plus, get priority sale access, free
